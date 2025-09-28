@@ -1,0 +1,28 @@
+<header class="mb-4 p-5 bg-gray-100 border-b border-gray-200">
+  <div class="flex flex-col justify-between gap-4 w-full md:flex-row">
+    <input type="text"
+           pInputText
+           placeholder="Search"
+           class="w-full md:w-64"
+           (input)="searchIcon($event)"/>
+    <p-select [options]="types"
+              [(ngModel)]="selectedType"
+              (onChange)="getSelectedType($event.value)"
+              class="w-full md:w-56"/>
+  </div>
+</header>
+<main>
+  <div class="mb-4 p-5">
+    <cdk-virtual-scroll-viewport itemSize="10" scrollWindow>
+      <div class="grid xl:grid-cols-8 lg:grid-cols-6 md:grid-cols-3 grid-cols-2 gap-4">
+        <ng-container *cdkVirtualFor="let i of items()">
+          <p-card (click)="copy(i.code)" class="icon-card border border-gray-200">
+            <span class="icon-card-svg" [innerHTML]="getSanitizedHtml(i.code)"></span>
+            <span class="icon-card-title">{{ i.name }}</span>
+          </p-card>
+        </ng-container>
+      </div>
+    </cdk-virtual-scroll-viewport>
+  </div>
+</main>
+<p-toast position="bottom-left"/>
