@@ -29,12 +29,12 @@ export class App implements OnInit {
 
   ngOnInit(): void {
     forkJoin([
-      this.http.get("/data/icon-pack-duotone.json"),
-      this.http.get("/data/icon-pack-regular.json"),
-      this.http.get("/data/icon-pack-brands.json"),
-      this.http.get("/data/icon-pack-solid.json"),
-      this.http.get("/data/icon-pack-light.json"),
-      this.http.get("/data/icon-pack-thin.json"),
+      this.http.get("data/icon-pack-duotone.json"),
+      this.http.get("data/icon-pack-regular.json"),
+      this.http.get("data/icon-pack-brands.json"),
+      this.http.get("data/icon-pack-solid.json"),
+      this.http.get("data/icon-pack-light.json"),
+      this.http.get("data/icon-pack-thin.json"),
     ]).subscribe((res: any[]) => {
       const keys = ["duotone", "regular", "brands", "solid", "light", "thin"];
       keys.forEach((key, i) => this.allIcons.set(key, res[i].data));
